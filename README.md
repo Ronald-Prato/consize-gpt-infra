@@ -6,5 +6,8 @@
 
 ### Built with SST
 
-![SST](https://hackmd.io/_uploads/HJj0vkEUh.png)
+## ![SST](https://hackmd.io/_uploads/HJj0vkEUh.png)
+
+---
+
 _Link to Docs: *https://sst.dev/*_
