@@ -1,0 +1,23 @@
+{
+  "name": "@consize-gpt/functions",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "sst bind vitest",
+    "typecheck": "tsc -noEmit"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115",
+    "@types/node": "^20.2.5",
+    "sst": "^2.11.1",
+    "vitest": "^0.31.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1386.0",
+    "child_process": "^1.0.2",
+    "dotenv": "^16.0.3",
+    "firebase-admin": "^11.8.0",
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.3.1"
+  }
+}
