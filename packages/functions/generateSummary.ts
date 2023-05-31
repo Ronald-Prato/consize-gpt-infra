@@ -45,7 +45,16 @@ export async function main(event: SQSEvent) {
 
       const audioContent = audioObject.Body;
       const transcription = await transcribeAudio(audioContent, fileName);
-      console.log("Transcription", transcription);
+
+      if (!transcription) {
+        //TODO: Send error to firestore
+
+        return {
+          statusCode: 400,
+          body: JSON.stringify("Transcription failed"),
+        };
+      }
+
       const summary = await makeSummary(String(transcription));
 
       await saveSummaryInFirestore(
@@ -100,6 +109,12 @@ const transcribeAudio = async (audioContent: any, fileName: string) => {
 };
 
 const makeSummary = async (transcription: string) => {
+  console.log(
+    "Transcription",
+    transcription.split(" ").slice(0, 20).join(" "),
+    " ..."
+  );
+
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -115,7 +130,7 @@ const makeSummary = async (transcription: string) => {
             content: `${customPrompt} ${transcription}`,
           },
         ],
-        temperature: 0.7,
+        temperature: 0.9,
       }),
     });
 

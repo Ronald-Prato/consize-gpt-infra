@@ -16,8 +16,11 @@ const replaceFilename = (filename: string) => {
   return newFilename;
 };
 
-const convertAudio = async (audioContent: Buffer): Promise<Buffer | null> => {
-  const audioPath = "/tmp/input_audio.ogg";
+const convertAudio = async (
+  audioContent: Buffer,
+  format: string
+): Promise<Buffer | null> => {
+  const audioPath = `/tmp/input_audio.${format}`;
   const outputPath = "/tmp/converted_audio.mp3";
   fs.writeFileSync(audioPath, audioContent);
 
@@ -59,7 +62,7 @@ export async function main(event: APIGatewayProxyEvent) {
     splitedFilename.split(".")[splitedFilename.split(".").length - 1];
 
   if (fileFormat !== "mp3") {
-    const mp3Audio = await convertAudio(audioContent);
+    const mp3Audio = await convertAudio(audioContent, fileFormat);
     if (mp3Audio) audioContent = mp3Audio;
   }
 
