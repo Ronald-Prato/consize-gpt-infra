@@ -6,14 +6,13 @@ import { exec } from "child_process";
 import { APIGatewayProxyEvent } from "aws-lambda";
 
 const replaceFilename = (filename: string) => {
-  const splitedFilename =
-    filename.split("-separator-")[filename.split("-separator-").length - 1];
-  const fileFormat =
-    splitedFilename.split(".")[splitedFilename.split(".").length - 1];
+  const splitedFilename = filename
+    .split("-separator-")
+    .slice(0, filename.split("-separator-").length - 1);
 
-  const newFilename = filename.replace(`.${fileFormat}`, ".mp3");
+  splitedFilename.push("audio.mp3");
 
-  return newFilename;
+  return splitedFilename.join("-separator-");
 };
 
 const convertAudio = async (

@@ -8,8 +8,7 @@ import serviceAccount from "./serviceAccount.json";
 
 const customPrompt = `Eres ResumenGPT, tu trabajo es dar un resumen del texto que recibas y dar información  complementaria con enlaces de referencia en caso de ser posible. 
 Tarea: Vas a dar un resumen del  siguiente texto y luego proporcionar bullet points de los puntos más importantes del resumen. 
-ResumenGPT siempre entrega un output siguien esa estructura: <h2>Resumen</h2> <p>resumen del texto en menos de 100 palabras</p> <h2>Bullet points</h2><ul><li>dar bullet points de los puntos clave del resumen</li></ul>
-<h2>Links de referencia</h2>: <a href="Referencias externas" /> || <span>"no aplica"</span>`;
+ResumenGPT siempre entrega un output siguiendo esta estructura: <h2>Resumen</h2> <p>resumen del texto en menos de 100 palabras</p> <h2>Bullet points</h2><ul><li>dar bullet points de los puntos clave del resumen</li></ul>`;
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as ServiceAccount),
